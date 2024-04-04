@@ -90,6 +90,8 @@ column2 từ bảng table_name sắp xếp theo thứ tự cột 1, cột 2 tăn
 
 ---
 
+---
+
 - :pencil2: INSERT INTO :point_right: Là loại bỏ các dữ liệu thuộc điều kiện phía sau NOT
 
 - VD: INSERT INTO table_name (column1, column2, column3, ...)
@@ -99,4 +101,34 @@ VALUES (value1, value2, value3, ...); : Thêm vào dữ liệu có các thuộc 
 
 * Có thể sử dụng "," để khai báo 1 lúc nhiều dữ liệu: INSERT INTO ... VALUES (a,b,c),(a1,b1,c1);
 
+---
 
+- :pencil2: NULL/NOT NULL :point_right: là giá trị rỗng / không rỗng
+
+- VD: SELECT column_names
+FROM table_name
+WHERE column_name IS NULL; : lấy dữ liệu ... với đk column là rỗng
+
+---
+
+---
+
+---
+
+- :pencil2: UPDATE cập nhật giá trị (của một hoặc nhiều thuộc tính) của một dữ liệu nào đó đã có trong table
+
+- VD: UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition; : cập nhật giá trị cột 1 bằng value 1,... với điều kiện
+
+---
+
+---
+
+---
+
+- :pencil2: DELETE xoá bỏ dữ liệu nào đó đã có trong table
+
+- VD: UPDATE table_name
+
+* Muốn xoá toàn bộ Table thì dùng DROP: DROP TABLE Customers;
