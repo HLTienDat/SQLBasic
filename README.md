@@ -29,7 +29,7 @@
 
 - :arrow_right: Dòng hay record là tượng trưng cho một đối tượng cụ thể thuộc bảng và có các thuộc tính của các cột, VD 1 sinh viên nào đó có StudentID, Name lần lượt là 20110011, Hoàng Lê Tiến Đạt
 
----
+------
 
 - :pencil2: SELECT: Lấy tất cả dữ liệu, hoặc theo từng cột Collumn1 từ bảng TABLENAME 
 
@@ -47,5 +47,45 @@
 
 - VD: SELECT * FROM Customers WHERE Country='Mexico'; -> lấy những đối tượng có thuộc tính Quốc tịch là Mexico
 
+* Note: nếu thuộc tính là String thì phải để trong '' hoặc "" , có thể sử dụng '>','<' chứ không nhất thiết phải '='
+
+- BETWEEN (giữa khoảng nào): WHERE Price BETWEEN 50 AND 60;
+
+- LIKE (tựa như): WHERE City LIKE 's%';
+
+- IN (trong tập hợp nào):WHERE City IN ('Paris','London');
+
 ---
+
+- :pencil2: ORDER BY :point_right: Sắp xếp dữ liệu tìm được theo thứ tự
+
+- VD: SELECT column1, column2, ... FROM table_name ORDER BY column1, column2, ... ASC|DESC; -> lấy các dữ liệu có trong cột column1
+column2 từ bảng table_name sắp xếp theo thứ tự cột 1, cột 2 tăng dần | giảm dần
+
+* Có nhiều cột thì sẽ ưu tiên sắp xếp theo cột đầu, nếu trùng nhau thì so sánh dựa trên cột 2: ORDER BY Country ASC, CustomerName DESC;
+
+---
+
+- :pencil2: ORDER BY :point_right: Sắp xếp dữ liệu tìm được theo thứ tự
+
+- VD: SELECT * FROM Customers WHERE Country = 'Spain' AND CustomerName LIKE 'G%'; -> lấy tất cả dữ liệu từ bảng Khách hàng có QUốc tịch là TBN và tên bắt đầu bằng chữ G
+
+---
+
+- :pencil2: AND/OR :point_right: Khi có nhiểu đk thì có thể chọn và / hoặc
+
+- AND thì cả hai điều kiện phải xảy ra thì mới được lấy, OR thì chỉ cần một trong hai điều kiện xảy ra là được
+
+* Có thể sử dụng ngoặc: WHERE Country = 'Spain' AND (CustomerName LIKE 'G%' OR CustomerName LIKE 'R%');
+
+* AND là dấu x, OR là dấu + nên nếu bỏ ngoặc thì đk trên sẽ trở thành đất nước TBN và tên bắt đầu = G. Hoặc là những người chỉ cần có tên bắt đầu bằng R, đất nước không quan trọng
+
+---
+
+- :pencil2: NOT :point_right: Là loại bỏ các dữ liệu thuộc điều kiện phía sau NOT
+
+- VD: SELECT * FROM Customers WHERE NOT Country = 'Spain'; : Lấy tất cả dữ liệu từ ... mà có quốc tịch không phải TBN
+
+---
+
 
