@@ -113,7 +113,7 @@ WHERE column_name IS NULL; : lấy dữ liệu ... với đk column là rỗng
 
 ---
 
-- :pencil2: UPDATE cập nhật giá trị (của một hoặc nhiều thuộc tính) của một dữ liệu nào đó đã có trong table
+- :pencil2: UPDATE :point_right: cập nhật giá trị (của một hoặc nhiều thuộc tính) của một dữ liệu nào đó đã có trong table
 
 - VD: UPDATE table_name
 SET column1 = value1, column2 = value2, ...
@@ -123,7 +123,7 @@ WHERE condition; : cập nhật giá trị cột 1 bằng value 1,... với đi�
 
 ---
 
-- :pencil2: DELETE xoá bỏ dữ liệu nào đó đã có trong table
+- :pencil2: DELETE :point_right: xoá bỏ dữ liệu nào đó đã có trong table
 
 - VD: UPDATE table_name
 
@@ -133,7 +133,7 @@ WHERE condition; : cập nhật giá trị cột 1 bằng value 1,... với đi�
 
 ---
 
-- :pencil2: SELECT TOP lấy dữ liệu với số lượng nhất định 
+- :pencil2: SELECT TOP :point_right: lấy dữ liệu với số lượng nhất định 
 
 - VD: SELECT TOP 3 * FROM Customers;: lấy 3 đối tượng từ bảng Customer
 
@@ -143,9 +143,51 @@ WHERE condition; : cập nhật giá trị cột 1 bằng value 1,... với đi�
     <h1>Aggregate Functions</h1>
 </div>
 
-- :pencil2: Set Column Name (Alias) Đặt tên
+- :pencil2: Set Column Name (Alias) :point_right: Đặt tên
 
 - VD: SELECT MIN(Price) AS SmallestPrice
 FROM Products;:  lấy ra giá tiền nhỏ nhất từ bảng Sản phẩm, đặc tên là SmallestPrice
+
+---
+
+- :pencil2: MIN/MAX :point_right: Lấy giả trị nhỏ nhất / lớn nhất
+
+- VD: SELECT MIN(Price) AS SmallestPrice
+FROM Products;:  lấy ra giá tiền nhỏ nhất từ bảng Sản phẩm, đặc tên là SmallestPrice
+
+---
+
+- :pencil2: MIN/MAX :point_right: Lấy giả trị nhỏ nhất / lớn nhất
+
+- VD: SELECT MIN(Price) AS SmallestPrice
+FROM Products;:  lấy ra giá tiền nhỏ nhất từ bảng Sản phẩm, đặc tên là SmallestPrice
+
+---
+
+- :pencil2: MIN() with GROUP BY :point_right: Lấy nhỏ nhất của từng nhóm nào đó
+
+- VD: SELECT MIN(Price) AS SmallestPrice, CategoryID
+FROM Products
+GROUP BY CategoryID;:  lấy ra giá tiền nhỏ nhất từ từ mỗi loại danh mục có ID...
+
+---
+
+- :pencil2: COUNT :point_right: Trả về giá trị số các dòng
+
+- VD: SELECT COUNT(*)
+FROM Products;:  tìm tổng số product
+
+* Nếu nêu rõ cột thì phép đếm sẽ bỏ qua các dữ liệu có cột đó = null
+
+* THêm Distinct thì sẽ bỏ những phần tử trùng :SELECT COUNT(DISTINCT Price)
+FROM Products;
+
+* Đặt tên: SELECT COUNT(*) AS [Number of records]
+FROM Products;
+
+---
+
+
+
 
 
