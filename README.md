@@ -88,4 +88,15 @@ column2 từ bảng table_name sắp xếp theo thứ tự cột 1, cột 2 tăn
 
 ---
 
+---
+
+- :pencil2: INSERT INTO :point_right: Là loại bỏ các dữ liệu thuộc điều kiện phía sau NOT
+
+- VD: INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...); : Thêm vào dữ liệu có các thuộc tính cột 1 = value 1, cột 2 = value2,...
+
+* Nếu thuộc tính nào không được khai báo thì coi như null, hoặc mặc định
+
+* Có thể sử dụng "," để khai báo 1 lúc nhiều dữ liệu: INSERT INTO ... VALUES (a,b,c),(a1,b1,c1);
+
 
