@@ -31,6 +31,8 @@
 
 ------
 
+------
+
 - :pencil2: SELECT: Lấy tất cả dữ liệu, hoặc theo từng cột Collumn1 từ bảng TABLENAME 
 
 - SELECT * (hoặc Collumn1, Collumn2) FROM TABLENAME 
@@ -90,8 +92,6 @@ column2 từ bảng table_name sắp xếp theo thứ tự cột 1, cột 2 tăn
 
 ---
 
----
-
 - :pencil2: INSERT INTO :point_right: Là loại bỏ các dữ liệu thuộc điều kiện phía sau NOT
 
 - VD: INSERT INTO table_name (column1, column2, column3, ...)
@@ -113,8 +113,6 @@ WHERE column_name IS NULL; : lấy dữ liệu ... với đk column là rỗng
 
 ---
 
----
-
 - :pencil2: UPDATE cập nhật giá trị (của một hoặc nhiều thuộc tính) của một dữ liệu nào đó đã có trong table
 
 - VD: UPDATE table_name
@@ -125,10 +123,29 @@ WHERE condition; : cập nhật giá trị cột 1 bằng value 1,... với đi�
 
 ---
 
----
-
 - :pencil2: DELETE xoá bỏ dữ liệu nào đó đã có trong table
 
 - VD: UPDATE table_name
 
 * Muốn xoá toàn bộ Table thì dùng DROP: DROP TABLE Customers;
+
+---
+
+---
+
+- :pencil2: SELECT TOP lấy dữ liệu với số lượng nhất định 
+
+- VD: SELECT TOP 3 * FROM Customers;: lấy 3 đối tượng từ bảng Customer
+
+* Note: có thể dùng PERCENT: TOP 50 PERCENT
+
+<div id="header_1" align="center">
+    <h1>Aggregate Functions</h1>
+</div>
+
+- :pencil2: Set Column Name (Alias) Đặt tên
+
+- VD: SELECT MIN(Price) AS SmallestPrice
+FROM Products;:  lấy ra giá tiền nhỏ nhất từ bảng Sản phẩm, đặc tên là SmallestPrice
+
+
