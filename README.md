@@ -1,15 +1,6 @@
 <div id="header" align="center">
-  <img src="https://i.imgur.com/c7iirLS.jpg" width="100"/>
-    <div id="badges">
-        <a href="your-linkedin-URL">
-            <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
-        </a>
-        <a href="your-youtube-URL">
-            <img src="https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Youtube Badge"/>
-        </a>
-        <a href="your-twitter-URL">
-            <img src="https://img.shields.io/badge/Twitter-blue?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter Badge"/>
-        </a>
+  <img src="https://i.imgur.com/c7iirLS.jpg" width="500"/>
+    <div>
     </div>
     <h1>Internship</h1>
 </div>
@@ -213,9 +204,9 @@ WHERE CustomerName LIKE 'a%'; :  lấy ra các khách hàng có tên bắt đầ
 
 * _ thay thế cho chỉ 1 kí tự (kí tự nào cũng được nhưng chỉ được 1 kí tự)
 
-* [] là giống array các kí tự thoả mãn: '[bsp]%'; tức là bắt đầu bằng chữ cái b,s hoặc p
+* [ ] là giống tập hợp các kí tự thoả mãn: '[bsp]%'; tức là bắt đầu bằng chữ cái b hoặc s hoặc p
 
-* - được sử dung trong array để viết tắt như là trong khoảng: '[a-f]%'; tức là bắt đầu bằng chữ cái trong khoảng từ a đến f đều được
+* "-" được sử dung trong array để viết tắt như là trong khoảng: '[a-f]%'; tức là bắt đầu bằng chữ cái trong khoảng từ a đến f đều được
 
 ---
 
@@ -238,6 +229,33 @@ FROM Customers A, Customers B
 WHERE A.CustomerID <> B.CustomerID
 AND A.City = B.City
 ORDER BY A.City;: Sẽ tạo ra bảng có 2 cột Name 1, Name 2 sẽ là tên của 2 người cùng sống ở một thành phố
+
+---
+
+- :pencil2: UNION  :point_right: Lấy dữ liệu giống nhau từ các bảng khác nhau
+
+- SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City; :  lấy các thành phố từ hai bảng Customers và Suppliers
+
+*Note: Các cột được lấy từ SELECT phải có cùng tên, kiểu dữ liệu và thứ tự sắp xếp (nếu có nhiều cột)
+
+*UNION ALL sẽ lấy cả những dữ liệu trùng (mặc định bỏ qua)
+
+---
+
+- :pencil2: UNION  :point_right: Lấy dữ liệu giống nhau từ các bảng khác nhau
+- VD: SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+---
+
+- :pencil2: GROUP BY  :point_right: Nhóm các dữ liệu giống nhau ở một thuộc tính nào đó, có thể sự dụng arrgregate function (SUM, AVG,COUNT, MAX, MIN) để nhóm
+- VD: SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+GROUP BY ShipperName;: nhóm các record mà ở đó có chung shippername (nhóm lại thành một record shippername)
 
 
 
