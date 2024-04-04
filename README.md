@@ -187,6 +187,60 @@ FROM Products;
 
 ---
 
+- :pencil2: SUM()/ AVG() :point_right: Trả về tổng / trung bình cộng của một cột chỉ chứa giá trị số nào đó.
+
+- VD: SELECT SUM(Quantity) 
+FROM OrderDetails;  Tính tổng quantity từ orderdetails
+
+* Các ví dụ dùng công thức và LEFT JOIN:
+- SELECT SUM(Quantity * 10)
+FROM OrderDetails;
+
+- SELECT SUM(Price * Quantity)
+FROM OrderDetails
+LEFT JOIN Products ON OrderDetails.ProductID = Products.ProductID;
+
+---
+
+- :pencil2: LIKE :point_right: Lấy dữ liệu có dạng như là
+
+- SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%'; :  lấy ra các khách hàng có tên bắt đầu bằng a
+
+* % thay thế cho không, một hoặc nhiều kí tự nào (tức là cái nào cũng thoả mãn)
+
+-> a% tức là bắt đầu bằng a, %a tức là kết thúc bằng a
+
+* _ thay thế cho chỉ 1 kí tự (kí tự nào cũng được nhưng chỉ được 1 kí tự)
+
+* [] là giống array các kí tự thoả mãn: '[bsp]%'; tức là bắt đầu bằng chữ cái b,s hoặc p
+
+* - được sử dung trong array để viết tắt như là trong khoảng: '[a-f]%'; tức là bắt đầu bằng chữ cái trong khoảng từ a đến f đều được
+
+---
+
+- :pencil2: JOIN :point_right: Kết hợp dữ liệu (tương ứng một thuộc tính nào đó) được tập hợp từ hai hay nhiều bảng
+
+- :red_square: JOIN (INNER JOIN) Kết hợp hai bảng và chỉ lấy những dòng nào mà tồn tại tương ứng ở cả 2 bảng
+
+- :blue_square: LEFT (OUTER) JOIN  Kết hợp hai bảng và lấy tất cả dòng ở bảng bên trái (cho dù có record không tồn tại record tương ứng ở bảng còn lại)  
+
+- :yellow_square: RIGHT (OUTER) JOIN Kết hợp hai bảng và lấy tất cả dòng ở bảng bên phải (cho dù có record không tồn tại record tương ứng ở bảng còn lại)  
+
+- :purple_square: FULL (OUTER) JOIN Kết hợp hai bảng và lấy toàn bộ các dòng của cả hai bảng
+
+* Note: Ví dụ khi xài RIGHT JOIN, dòng ở bảng bên phải mà không có dữ liệu tính tương ứng ở bảng bên trái thì sẽ để null toàn bộ thuộc tính ở bảng bên trái
+
+- :brown_square: SELF JOIN Kết hợp hai bảng và lấy toàn bộ các dòng của cả hai bảng
+
+* VD: SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;: Sẽ tạo ra bảng có 2 cột Name 1, Name 2 sẽ là tên của 2 người cùng sống ở một thành phố
+
+
+
 
 
 
