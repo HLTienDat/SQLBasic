@@ -257,8 +257,63 @@ SELECT column_name(s) FROM table2;
 LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
 GROUP BY ShipperName;: nhóm các record mà ở đó có chung shippername (nhóm lại thành một record shippername)
 
+---
 
+- :pencil2: HAVING  :point_right: Giống WHERE nhưng WHERE không xài các arrgregate function được còn HAVING thì có
 
+-VD: SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5; xuất ra bảng có đất nước và số lượng người có quốc tịch đó
+
+---
+
+- :pencil2: EXISTS  :point_right: Test trong dữ liệu coi có record nào đó tồn tại không
+
+-VD: SELECT SupplierName
+FROM Suppliers
+WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20); trả về tên của các nhà cung cấp mà có sản phẩm trong bảng Products và giá nhỏ hơn 20
+
+---
+
+- :pencil2: ANY / ALL  :point_right: Giống phép so sánh ở trên nhưng là so sánh giữa một cột và tập hợp các cột
+
+-VD: SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10); sẽ trả về một bảng gồm các ProductName mà Quantity = 10
+
+-VD: SELECT ProductName
+FROM Products
+WHERE ProductID = ALL
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10); sẽ trả về rỗng vì yêu cầu tất cả phải có QUantity = 10
+
+---
+
+- :pencil2: SELECT INTO  :point_right: Không chỉ chọn ra các dữ liệu mà còn đưa các dữ liệu vào một bảng mới
+
+-VD: SELECT Customers.CustomerName, Orders.OrderID
+INTO CustomersOrderBackup2017
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID; copy tên khách hàng và orderId vào bảng backup (orderID có thể rỗng do là LEFT JOIN)
+
+* Note: SELECT * INTO newtable
+FROM oldtable
+WHERE 1 = 0; giúp tạo bảng với dữ liệu trống nhưng vẫn giữ các cột của oldtable
+
+---
+
+- :pencil2: INSERT INTO ... SELECT :point_right: Tương tự SELECT INTO nhưng là đưa dữ liệu vào bảng có sẵn
+
+-VD: INSERT INTO Customers (CustomerName, City, Country)
+SELECT SupplierName, City, Country FROM Suppliers
+WHERE Country='Germany';: copy tên khách hàng, thành phố, quốc gia từ bảng Suppliers vào bảng Customers với điều kiện Quốc gia là Đức
+
+* Note: Yêu cầu dữ liệu đưa vào phải khớp với dữ liệu có sẵn giống UNION
 
 
 
