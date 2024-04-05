@@ -315,6 +315,116 @@ WHERE Country='Germany';: copy tên khách hàng, thành phố, quốc gia từ 
 
 * Note: Yêu cầu dữ liệu đưa vào phải khớp với dữ liệu có sẵn giống UNION
 
+<div id="header_1" align="center">
+    <h1>SQl Database</h1>
+</div>
 
+- CREATE DATABASE databasename;: Tạo CSDL
 
+- DROP DATABASE databasename;: Xoá hoàn toàn CSDL
+- BACKUP DATABASE databasename
+TO DISK = 'filepath';: Backup bảng vào filepath
 
+- BACKUP DATABASE databasename
+TO DISK = 'filepath'
+WITH DIFFERENTIAL;: Backup chỉ những thay đổi so với lần backup gần nhất
+
+- CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);: Tạo bảng với các thuộc tính
+
+- DROP TABLE table_name;: Xoá bảng
+
+- ALTER TABLE table_name
+ADD column_name datatype; (hoặc DROP COLUMN column_name;): thay đổi bảng bằng thêm cột (xoá cột)
+
+<div id="header_1" align="center">
+    <h1>Các constraint của Database</h1>
+</div>
+
+- ID int NOT NULL : ID không được rỗng
+
+- ID int NOT NULL UNIQUE: Tag UNIQUE đảm bảo rằng ID không thể bị trùng lặp
+
+- CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);: Primary key để xác định thuộc tính chính để đánh dấu các record
+
+- CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);: FOREIGN KEY để ánh xạ đến một Primary của bảng khác và ngăn cho mối liên hệ giữa hai bảng không bị cắt, cũng như xác định loại dữ liệu của foreign key phải trùng với primary key ấy
+
+- CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+); CHECK đảm bảo rằng dữ liệu Age được đưa vào phải >=18
+
+- CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Sandnes'
+);: Tạo ra dữ liệu mặc định cho một thuộc tính
+
+- CREATE TABLE Persons (
+    Personid int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (Personid)
+);: AUTO_INCREMENT giúp để tự động tăng primary key khi tạo record mới
+
+---
+
+<div id="header_1" align="center">
+    <h1>FUNCTIONS và TRIGGER của PosrgreSQL</h1>
+</div>
+- Fuction: A function in PostgreSQL is a named block of code that accepts arguments, performs a set of operations, and returns a result.
+Hàm là một đoạn code có tên và sử dụng các tham số truyền vào để thực hiện một tập hợp các phép toán và trả về một kết quả. Function có thể được gọi và sử dụng bởi các function khác hoặc trigger.
+
+- VD:
+CREATE FUNCTION add_numbers(a integer, b integer)
+RETURNS integer AS $$
+BEGIN
+    RETURN a + b;
+END; $$
+LANGUAGE plpgsql;
+
+- Trigger: A Trigger cũng là một đoạn code có tên được tự động gọi lên để thực hiện khi có một sự kiện gì đó xảy ra (như INSERT, DELETE, UPDATE, ...). Trigger khi được gọi sẽ thực hiện các hàm, hoặc các thao tác xoá sửa thêm, ...
+
+- VD:
+CREATE OR REPLACE FUNCTION f_temp ()
+RETURNS trigger AS
+$$
+     DECLARE
+ 
+     BEGIN
+          RAISE NOTICE 'NEW: %', NEW;
+          IF NEW.value < 0
+          THEN
+               NEW.value := -1;
+               RETURN NEW;
+          END IF;
+          RETURN NEW;
+     END;
+$$ LANGUAGE 'plpgsql';
+
+- VD CREATE TRIGGER xtrig
+     BEFORE INSERT ON t_temperature
+     FOR EACH ROW EXECUTE PROCEDURE f_temp();
