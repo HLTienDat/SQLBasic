@@ -405,7 +405,6 @@ BEGIN
     RETURN a + b;
 END; $$
 LANGUAGE plpgsql;
-
 - Trigger: A Trigger cũng là một đoạn code có tên được tự động gọi lên để thực hiện khi có một sự kiện gì đó xảy ra (như INSERT, DELETE, UPDATE, ...). Trigger khi được gọi sẽ thực hiện các hàm, hoặc các thao tác xoá sửa thêm, ...
 
 - VD:
