@@ -397,7 +397,6 @@ ADD column_name datatype; (hoặc DROP COLUMN column_name;): thay đổi bảng 
 </div>
 - Fuction: A function in PostgreSQL is a named block of code that accepts arguments, performs a set of operations, and returns a result.
 Hàm là một đoạn code có tên và sử dụng các tham số truyền vào để thực hiện một tập hợp các phép toán và trả về một kết quả. Function có thể được gọi và sử dụng bởi các function khác hoặc trigger.
-
 - VD:
 CREATE FUNCTION add_numbers(a integer, b integer)
 RETURNS integer AS $$
@@ -405,8 +404,8 @@ BEGIN
     RETURN a + b;
 END; $$
 LANGUAGE plpgsql;
-- Trigger: A Trigger cũng là một đoạn code có tên được tự động gọi lên để thực hiện khi có một sự kiện gì đó xảy ra (như INSERT, DELETE, UPDATE, ...). Trigger khi được gọi sẽ thực hiện các hàm, hoặc các thao tác xoá sửa thêm, ...
 
+- Trigger: A Trigger cũng là một đoạn code có tên được tự động gọi lên để thực hiện khi có một sự kiện gì đó xảy ra (như INSERT, DELETE, UPDATE, ...). Trigger khi được gọi sẽ thực hiện các hàm, hoặc các thao tác xoá sửa thêm, ...
 - VD:
 CREATE OR REPLACE FUNCTION f_temp ()
 RETURNS trigger AS
@@ -423,7 +422,6 @@ $$
           RETURN NEW;
      END;
 $$ LANGUAGE 'plpgsql';
-
 - VD CREATE TRIGGER xtrig
      BEFORE INSERT ON t_temperature
      FOR EACH ROW EXECUTE PROCEDURE f_temp();
